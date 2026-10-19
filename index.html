@@ -107,10 +107,12 @@ img{max-width:100%;display:block}
 .certificates{padding:90px 0;background:var(--bg2);border-top:1px solid rgba(255,255,255,.05)}
 .certificates-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
 .certificate{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.1);border-radius:8px;
-  background:linear-gradient(135deg,#1c1526,#241a33)}
-.certificate{min-height:220px;display:grid;place-items:center;text-align:center;padding:32px}
-.certificate-placeholder{display:grid;place-items:center;gap:12px;color:var(--muted);font-size:.85rem}
-.certificate-placeholder i{font-size:2rem;color:var(--purple)}
+  background:#0d0c11}
+.certificate a{display:block;line-height:0;background:#fff}
+.certificate img{display:block;width:100%;aspect-ratio:1.4;object-fit:contain}
+.certificate-caption{padding:16px 18px}
+.certificate-caption h3{font-size:.95rem;font-weight:600}
+.certificate-caption p{margin-top:5px;color:var(--muted);font-size:.78rem;line-height:1.6}
 
 /* ============ ABOUT / PRINCIPLES ============ */
 .about{padding:90px 0;background:var(--bg2);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05)}
@@ -303,10 +305,22 @@ img{max-width:100%;display:block}
     <div class="sec-head reveal"><h2>Certificates</h2><p>Certifications and achievements</p></div>
     <div class="certificates-grid">
       <div class="certificate reveal">
-        <div class="certificate-placeholder"><i class="fa-solid fa-certificate"></i><span>Certificate details coming soon</span></div>
+        <a href="certificate-devcon.png" target="_blank" rel="noopener noreferrer" aria-label="View DEVCON Bits of Light certificate">
+          <img src="certificate-devcon.png" alt="Certificate of Participation for Mc Alther Vadil in the DEVCON Bits of Light Roadshow, July 2026">
+        </a>
+        <div class="certificate-caption">
+          <h3>Certificate of Participation</h3>
+          <p>DEVCON Bits of Light Roadshow · July 2026</p>
+        </div>
       </div>
       <div class="certificate reveal" style="transition-delay:.08s">
-        <div class="certificate-placeholder"><i class="fa-solid fa-certificate"></i><span>Certificate details coming soon</span></div>
+        <a href="certificate-cisco.png" target="_blank" rel="noopener noreferrer" aria-label="View Cisco Packet Tracer certificate">
+          <img src="certificate-cisco.png" alt="Cisco Networking Academy certificate awarded to Mc Alther Vadil for completing Getting Started with Cisco Packet Tracer">
+        </a>
+        <div class="certificate-caption">
+          <h3>Getting Started with Cisco Packet Tracer</h3>
+          <p>Cisco Networking Academy · October 2026</p>
+        </div>
       </div>
     </div>
   </div>

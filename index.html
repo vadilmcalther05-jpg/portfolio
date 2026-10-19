@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mc Alther G. Vadil — Bachelor of Science in Information Technology</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{
+  --bg:#0b0a0e; --bg2:#100f14;
+  --card:rgba(255,255,255,.055);
+  --border:rgba(255,255,255,.14);
+  --text:#f4f2f7; --muted:#9b98a6;
+  --purple:#a06af9; --purple-dark:#6d28d9;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+section{scroll-margin-top:70px}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+::selection{background:var(--purple);color:#fff}
+::-webkit-scrollbar{width:9px}
+::-webkit-scrollbar-track{background:#0b0a0e}
+::-webkit-scrollbar-thumb{background:#26242e;border-radius:8px}
+::-webkit-scrollbar-thumb:hover{background:var(--purple)}
+.wrap{max-width:1150px;margin:0 auto;padding:0 28px}
+
+/* ============ NAVBAR ============ */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:.3s}
+.navbar.scrolled{background:rgba(11,10,14,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);padding:13px 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Great Vibes',cursive;font-size:1.7rem;color:#fff;line-height:1;white-space:nowrap}
+.nav-links{display:flex;gap:38px;list-style:none}
+.nav-links a{font-size:.86rem;color:#d6d3de;transition:.25s;position:relative}
+.nav-links a:hover{color:#fff}
+.nav-links a.active{color:var(--purple)}
+.nav-links a.active::after{content:'';position:absolute;left:0;bottom:-6px;width:18px;height:2px;background:var(--purple);border-radius:2px}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+.hamburger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:.3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ============ SETTINGS BUTTON + MODAL ============ */
+.settings-btn{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.06);border:1px solid var(--border);
+  color:var(--text);border-radius:999px;padding:9px 16px;font-family:'Poppins';font-size:.82rem;font-weight:500;
+  cursor:pointer;transition:.25s;white-space:nowrap}
+.settings-btn i{color:var(--purple);transition:.4s}
+.settings-btn:hover{border-color:var(--purple);transform:translateY(-2px)}
+.settings-btn:hover i{transform:rotate(90deg)}
+@media(max-width:760px){.settings-btn span{display:none}.settings-btn{padding:10px 13px}}
+.settings-overlay{position:fixed;inset:0;background:rgba(4,3,8,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  z-index:2000;display:grid;place-items:center;padding:20px;opacity:0;pointer-events:none;transition:.25s}
+.settings-overlay.open{opacity:1;pointer-events:auto}
+.settings-panel{width:min(620px,100%);max-height:88vh;overflow-y:auto;background:#0f0d15;border:1px solid var(--border);
+  border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.6);transform:translateY(16px) scale(.97);transition:.25s}
+.settings-overlay.open .settings-panel{transform:none}
+.settings-head{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;
+  border-bottom:1px solid var(--border);position:sticky;top:0;background:#0f0d15;z-index:2}
+.settings-head h3{font-size:1.05rem;font-weight:600;display:flex;gap:11px;align-items:center}
+.settings-head h3 i{color:var(--purple)}
+.settings-close{background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;padding:6px 10px;border-radius:8px;transition:.2s}
+.settings-close:hover{background:rgba(255,255,255,.08);color:#fff}
+.settings-body{padding:22px 24px 28px}
+.settings-hint{font-size:.84rem;color:var(--muted);line-height:1.7;margin-bottom:22px}
+.settings-hint b{color:var(--text);font-weight:500}
+.photo-item{display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.photo-item:last-of-type{border-bottom:none}
+.pp-preview{width:74px;height:56px;flex-shrink:0;border-radius:8px;overflow:hidden;border:2px solid var(--border);
+  background:linear-gradient(135deg,#1c1526,#241a33);display:grid;place-items:center;color:var(--muted);font-size:.68rem;text-align:center;line-height:1.4;padding:4px}
+.pp-preview img{width:100%;height:100%;object-fit:cover}
+.pp-info{flex:1;min-width:0}
+.pp-info h4{font-size:.88rem;font-weight:600}
+.pp-info small{font-size:.72rem;color:var(--muted)}
+.pp-actions{display:flex;flex-direction:column;gap:7px}
+.pp-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;background:rgba(255,255,255,.06);
+  border:1px solid var(--border);color:var(--text);border-radius:8px;padding:7px 14px;font-family:'Poppins';
+  font-size:.74rem;font-weight:500;cursor:pointer;transition:.2s;white-space:nowrap}
+.pp-btn:hover{border-color:var(--purple);color:var(--purple)}
+.pp-btn.restore{color:var(--muted)}
+.pp-btn.restore:hover{border-color:#f87171;color:#f87171}
+.settings-note{font-size:.74rem;color:var(--muted);margin-top:20px;display:flex;gap:9px;align-items:center;line-height:1.6}
+.settings-note i{color:var(--purple);flex-shrink:0}
+.reset-all{margin-top:22px;width:100%;justify-content:center;display:inline-flex;align-items:center;gap:9px;
+  background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.35);color:#f87171;border-radius:10px;
+  padding:12px;font-family:'Poppins';font-size:.85rem;font-weight:600;cursor:pointer;transition:.25s}
+.reset-all:hover{background:rgba(248,113,113,.16)}
+@media(max-width:520px){
+  .photo-item{flex-wrap:wrap}
+  .pp-actions{flex-direction:row;width:100%}
+  .pp-btn{flex:1}
+}
+
+/* ============ HERO ============ */
+.hero{position:relative;padding:120px 0 70px;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-220px;left:-180px;width:640px;height:640px;
+  background:radial-gradient(circle,rgba(124,58,237,.28),transparent 68%);filter:blur(50px);pointer-events:none}
+.ghost{position:absolute;top:74px;left:-6px;font-size:clamp(130px,19vw,250px);font-weight:700;
+  letter-spacing:.04em;line-height:.95;color:rgba(255,255,255,.04);white-space:nowrap;
+  user-select:none;pointer-events:none;z-index:0}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;align-items:center;position:relative;z-index:1}
+.hero-left{position:relative;z-index:3;padding:30px 0}
+.glass-card{
+  max-width:560px;margin-right:-90px;
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--border);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-radius:6px;padding:52px 58px;
+  box-shadow:0 24px 60px rgba(0,0,0,.35);
+}
+.glass-card .hi{font-size:1.55rem;font-weight:400;margin-bottom:6px}
+.glass-card h1{font-size:clamp(2rem,4vw,3.1rem);font-weight:300;line-height:1.18;letter-spacing:.01em}
+.glass-card h1 span{color:var(--purple);font-weight:700}
+.glass-card .role{margin-top:14px;font-size:1.05rem;font-weight:300;color:#e8e5ef;line-height:1.5}
+.profile-details{display:grid;gap:10px;margin-top:22px}
+.profile-details a,.profile-details span{display:flex;align-items:flex-start;gap:11px;color:#d6d3de;font-size:.8rem;line-height:1.55;overflow-wrap:anywhere}
+.profile-details i{width:16px;margin-top:3px;color:var(--purple);flex-shrink:0;text-align:center}
+.profile-details a:hover{color:#fff}
+.socials{display:flex;gap:20px;margin-top:34px;padding-left:8px}
+.socials a{width:34px;height:34px;display:grid;place-items:center;color:#cfcbd8;font-size:1rem;transition:.25s;border-radius:50%}
+.socials a:hover{color:var(--purple);transform:translateY(-3px)}
+.hero-right{position:relative;height:620px;z-index:1}
+.purple-block{position:absolute;left:0;top:130px;width:64%;height:56%;z-index:0;
+  background:linear-gradient(150deg,#9d6bfa,#6a35e8)}
+.hero-right img{position:absolute;right:0;top:-70px;width:86%;height:calc(100% + 70px);
+  object-fit:cover;object-position:center top;z-index:1;border-radius:2px;
+  box-shadow:0 30px 70px rgba(0,0,0,.5);background:#1a1522}
+.hero-right .project-photo-change{top:-56px;right:12px;z-index:2;opacity:1;pointer-events:auto;transform:none}
+
+/* ============ SECTION HEADINGS ============ */
+.sec-head{text-align:center;margin-bottom:56px}
+.sec-head h2{font-size:clamp(1.6rem,3vw,2.1rem);font-weight:600}
+.sec-head p{color:var(--muted);font-size:.92rem;margin-top:10px}
+
+/* ============ PROJECTS ============ */
+.projects{padding:90px 0 60px}
+.projects-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.project{position:relative;overflow:hidden;border-radius:8px;cursor:pointer;background:linear-gradient(135deg,#1c1526,#241a33)}
+.project img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease,opacity .4s}
+.project:hover img{transform:scale(1.05);opacity:.75}
+.project-photo-change{position:absolute;top:14px;right:14px;z-index:1;width:38px;height:38px;display:grid;place-items:center;
+  border:1px solid rgba(255,255,255,.35);border-radius:50%;background:rgba(11,10,14,.78);color:#fff;font-size:.9rem;
+  cursor:pointer;opacity:0;pointer-events:none;transform:translateY(-4px);transition:.2s}
+.project:hover .project-photo-change,.project:focus-within .project-photo-change{opacity:1;pointer-events:auto;transform:none}
+.project-photo-change:hover,.project-photo-change:focus-visible{background:var(--purple-dark);border-color:var(--purple);outline:none}
+@media(hover:none){.project-photo-change{opacity:1;pointer-events:auto;transform:none}}
+.project .overlay,.certificate .overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:22px;background:linear-gradient(180deg,transparent 45%,rgba(8,6,12,.9));opacity:0;transition:.35s}
+.project:hover .overlay,.certificate:hover .overlay{opacity:1}
+.overlay h3{font-size:1.05rem;font-weight:600}
+.overlay small{color:var(--purple);font-size:.75rem;letter-spacing:1px;text-transform:uppercase;margin-top:4px}
+.p1{grid-column:span 7;height:340px}
+.p2{grid-column:span 5;height:340px}
+.p3{grid-column:span 5;height:300px}
+.p4{grid-column:span 7;height:300px}
+.p6{grid-column:span 6;height:280px}
+.p7{grid-column:span 6;height:280px}
+
+/* ============ CERTIFICATES ============ */
+.certificates{padding:90px 0;background:var(--bg2);border-top:1px solid rgba(255,255,255,.05)}
+.certificates-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.certificate{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.1);border-radius:8px;
+  background:linear-gradient(135deg,#1c1526,#241a33)}
+.certificate img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .5s ease,opacity .4s}
+.certificate:hover img{transform:scale(1.04);opacity:.75}
+.certificate-placeholder{aspect-ratio:4/3;display:grid;place-items:center;gap:10px;color:var(--muted);font-size:.85rem}
+.certificate-placeholder i{font-size:2rem;color:var(--purple)}
+.certificate .overlay{opacity:1}
+.certificate:hover .overlay{background:linear-gradient(180deg,transparent 30%,rgba(8,6,12,.94))}
+.certificate .project-photo-change{opacity:1;pointer-events:auto;transform:none}
+
+/* ============ ABOUT / PRINCIPLES ============ */
+.about{padding:90px 0;background:var(--bg2);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05)}
+.about-intro{max-width:720px;margin:0 auto 52px;text-align:center;color:var(--muted);line-height:1.9;font-size:.95rem}
+.about-layout{display:grid;grid-template-columns:1.35fr .95fr;gap:24px;align-items:stretch;margin-bottom:52px}
+.skills-panel{background:#0d0c11;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:24px;box-shadow:0 16px 36px rgba(0,0,0,.18)}
+.skills-panel h3{font-size:1.05rem;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.skills-panel h3 i{color:var(--purple)}
+.skill-list{display:grid;gap:16px}
+.skill-row{display:grid;gap:8px}
+.skill-top{display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:#e6e1ee}
+.skill-top span:last-child{color:var(--purple);font-weight:600}
+.skill-bar{height:10px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
+.skill-bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(135deg,#a06af9,#6d28d9)}
+.principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+@media(max-width:860px){.about-layout{grid-template-columns:1fr}}
+.p-card{background:#0d0c11;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:28px;transition:.3s}
+.p-card:hover{border-color:var(--purple);transform:translateY(-5px);box-shadow:0 18px 40px rgba(0,0,0,.4)}
+.p-card h3{font-size:1rem;font-weight:600;margin-bottom:12px}
+.p-card p{font-size:.83rem;color:var(--muted);line-height:1.75}
+.p-card i{color:var(--purple);font-size:1.15rem;margin-bottom:16px;display:block}
+
+/* ============ BRANDS ============ */
+.brands{padding:80px 0}
+.brand-row{display:flex;justify-content:center;align-items:center;gap:56px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;color:#5d5a68;font-size:1.35rem;font-weight:600;transition:.3s;cursor:default}
+.brand:hover{color:#fff;transform:translateY(-3px)}
+.brand i{font-size:1.6rem}
+
+/* ============ TESTIMONIALS ============ */
+.testimonials{padding:60px 0 100px}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.t-card{background:#0d0c11;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:30px;transition:.3s}
+.t-card:hover{border-color:var(--purple);transform:translateY(-5px)}
+.t-card .fa-quote-left{color:var(--purple);font-size:1.3rem;margin-bottom:16px}
+.t-card p{font-size:.86rem;color:#c9c6d3;line-height:1.8;margin-bottom:22px}
+.t-author{display:flex;align-items:center;gap:13px}
+.t-ava{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:.8rem;
+  background:linear-gradient(135deg,#9d6bfa,#6a35e8);flex-shrink:0}
+.t-author h4{font-size:.9rem;font-weight:600}
+.t-author small{color:var(--muted);font-size:.75rem}
+
+/* ============ CONTACT ============ */
+.contact{padding:110px 0;text-align:center;position:relative;overflow:hidden}
+.contact::before{content:'';position:absolute;bottom:-260px;left:50%;transform:translateX(-50%);
+  width:700px;height:500px;background:radial-gradient(circle,rgba(124,58,237,.22),transparent 68%);filter:blur(50px);pointer-events:none}
+.contact h2{font-size:clamp(1.9rem,4vw,2.8rem);font-weight:600;position:relative;z-index:1}
+.contact h2 span{color:var(--purple)}
+.contact p{color:var(--muted);margin:18px auto 38px;max-width:480px;line-height:1.8;font-size:.95rem;position:relative;z-index:1}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 34px;border-radius:6px;font-weight:600;
+  font-size:.92rem;font-family:'Poppins';border:none;cursor:pointer;transition:.3s;position:relative;z-index:1}
+.btn-primary{background:linear-gradient(135deg,#9d6bfa,#6d28d9);color:#fff;box-shadow:0 10px 30px rgba(124,58,237,.35)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(124,58,237,.5)}
+.contact-modal-overlay{position:fixed;inset:0;background:rgba(4,3,8,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:2001;display:grid;place-items:center;padding:20px;opacity:0;pointer-events:none;transition:.25s}
+.contact-modal-overlay.open{opacity:1;pointer-events:auto}
+.contact-modal-panel{width:min(520px,100%);background:#0f0d15;border:1px solid rgba(255,255,255,.1);border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.6);transform:translateY(16px) scale(.97);transition:.25s;padding:24px}
+.contact-modal-overlay.open .contact-modal-panel{transform:none}
+.contact-modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.contact-modal-head h3{font-size:1.1rem;font-weight:600}
+.contact-close{background:none;border:none;color:var(--muted);font-size:1.15rem;cursor:pointer;padding:6px 10px;border-radius:8px;transition:.2s}
+.contact-close:hover{background:rgba(255,255,255,.08);color:#fff}
+.contact-list{display:grid;gap:12px}
+.contact-item{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:rgba(255,255,255,.02);transition:.2s}
+.contact-item:hover{border-color:rgba(160,106,249,.7);transform:translateY(-1px)}
+.contact-item i{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,#9d6bfa,#6d28d9);color:#fff;font-size:.9rem}
+.contact-item a{display:flex;flex:1;justify-content:space-between;align-items:center;gap:12px;color:#f3f0f8;text-decoration:none}
+.contact-item span{font-size:.85rem;color:var(--muted)}
+.contact-item strong{font-size:.9rem;font-weight:600}
+
+/* ============ FOOTER ============ */
+.footer{border-top:1px solid rgba(255,255,255,.06);padding:30px 0}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.footer small{color:#6d6a78;font-size:.8rem}
+.footer .socials{margin:0;padding:0;gap:16px}
+.footer .socials a{width:30px;height:30px;font-size:.9rem}
+
+/* ============ ANIMATIONS ============ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.hero-left{animation:fadeUp .8s .1s both}
+.hero-right{animation:fadeUp .8s .25s both}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s cubic-bezier(.2,.6,.3,1)}
+.reveal.visible{opacity:1;transform:none}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:960px){
+  .hero{padding-top:100px}
+  .hero-grid{grid-template-columns:1fr}
+  .hero-right{order:-1;height:420px}
+  .hero-right img{top:0;height:100%;width:80%}
+  .glass-card{margin:-60px 0 0;padding:36px 32px}
+  .p1,.p2,.p3,.p4,.p6,.p7{grid-column:span 12;height:280px}
+}
+@media(max-width:760px){
+  .logo{font-size:1.4rem}
+  .nav-links{position:fixed;top:64px;left:16px;right:16px;flex-direction:column;gap:2px;
+    background:rgba(13,12,17,.97);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px;display:none;z-index:99}
+  .nav-links.open{display:flex}
+  .nav-links a{display:block;padding:12px 14px;border-radius:8px}
+  .nav-links a:hover{background:rgba(255,255,255,.06)}
+  .hamburger{display:flex}
+  .ghost{font-size:120px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar" id="navbar">
+  <div class="wrap nav-inner">
+    <a href="#home" class="logo">Mc Alther G. Vadil</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#contact">Contact me</a></li>
+    </ul>
+    <button class="settings-btn" id="settingsBtn"><i class="fa-solid fa-gear"></i><span>Settings</span></button>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="home">
+  <span class="ghost">DESIGNER</span>
+  <div class="wrap hero-grid">
+    <div class="hero-left">
+      <div class="glass-card">
+        <p class="hi">Hi,</p>
+        <h1>my name is<br><span>Mc Alther G. Vadil</span></h1>
+        <p class="role">Bachelor of Science in Information Technology</p>
+        <div class="profile-details">
+          <span><i class="fa-solid fa-school"></i>Torres Capitol College</span>
+          <a href="tel:+639972666855"><i class="fa-solid fa-phone"></i>+63 997 266 6855</a>
+          <span><i class="fa-solid fa-location-dot"></i>P-1 Panadtalan, Maramag, Bukidnon</span>
+          <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=vadilmcalther05%40gmail.com" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-envelope"></i>vadilmcalther05@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="purple-block"></div>
+      <img id="proj-img-profile" src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?auto=format&fit=crop&w=800&q=80" alt="Mc Alther G. Vadil — student photo" onerror="this.style.display='none'">
+      <button class="project-photo-change" type="button" data-change-photo="profile" aria-label="Change profile photo" title="Change profile photo"><i class="fa-solid fa-camera"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= PROJECTS ================= -->
+<section class="projects" id="projects">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>Projects</h2><p>Programs, systems, and apps I've built as an IT student</p></div>
+    <div class="projects-grid">
+
+      <div class="project p1 reveal">
+        <img id="proj-img-p1" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=900&q=80" alt="Animation project — 3D abstract render" onerror="this.style.display='none'">
+        <button class="project-photo-change" type="button" data-change-photo="p1" aria-label="Change Animation project image" title="Change project image"><i class="fa-solid fa-camera"></i></button>
+        <div class="overlay"><h3>Animation</h3><small>3D · Blender · Rendering</small></div>
+      </div>
+
+      <div class="project p2 reveal" style="transition-delay:.08s">
+        <img id="proj-img-p2" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=700&q=80" alt="GWA project — calculator with grade papers" onerror="this.style.display='none'">
+        <button class="project-photo-change" type="button" data-change-photo="p2" aria-label="Change GWA project image" title="Change project image"><i class="fa-solid fa-camera"></i></button>
+        <div class="overlay"><h3>GWA (General Weighted Average)</h3><small>Python · PyCharm · MySQL</small></div>
+      </div>
+
+      <div class="project p3 reveal">
+        <img id="proj-img-p3" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=700&q=80" alt="Point of Sales project — card payment terminal" onerror="this.style.display='none'">
+        <button class="project-photo-change" type="button" data-change-photo="p3" aria-label="Change Point of Sales project image" title="Change project image"><i class="fa-solid fa-camera"></i></button>
+        <div class="overlay"><h3>Point of Sales</h3><small>Python · PyCharm</small></div>
+      </div>
+
+      <div class="project p4 reveal" style="transition-delay:.08s">
+        <img id="proj-img-p4" src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=900&q=80" alt="PlayMate Chatbot AI project — robot" onerror="this.style.display='none'">
+        <button class="project-photo-change" type="button" data-change-photo="p4" aria-label="Change PlayMate Chatbot AI project image" title="Change project image"><i class="fa-solid fa-camera"></i></button>
+        <div class="overlay"><h3>PlayMate Chatbot AI</h3><small>AI · Chatbot · NLP</small></div>
+      </div>
+
+      <div class="project p6 reveal" style="transition-delay:.08s">
+        <img id="proj-img-p6" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?auto=format&fit=crop&w=600&q=80" alt="First Aid Application project — doctor with medical tablet" onerror="this.style.display='none'">
+        <button class="project-photo-change" type="button" data-change-photo="p6" aria-label="Change First Aid Application project image" title="Change project image"><i class="fa-solid fa-camera"></i></button>
+        <div class="overlay"><h3>First Aid Application</h3><small>Mobile · GlideApps</small></div>
+      </div>
+
+      <div class="project p7 reveal" style="transition-delay:.16s">
+        <img id="proj-img-p7" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Student Portal System project — dashboard on laptop" onerror="this.style.display='none'">
+        <button class="project-photo-change" type="button" data-change-photo="p7" aria-label="Change Student Portal System project image" title="Change project image"><i class="fa-solid fa-camera"></i></button>
+        <div class="overlay"><h3>Student Portal System</h3><small>Python · PyCharm · MySQL</small></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= CERTIFICATES ================= -->
+<section class="certificates" id="certificates">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>Certificates</h2><p>Certifications and achievements</p></div>
+    <div class="certificates-grid">
+      <div class="certificate reveal">
+        <div class="certificate-placeholder" id="certificate-placeholder-c1"><i class="fa-solid fa-certificate"></i><span>Add certificate image</span></div>
+        <img id="proj-img-c1" alt="Certificate 1" style="display:none">
+        <button class="project-photo-change" type="button" data-change-photo="c1" aria-label="Add or change Certificate 1 image" title="Add or change certificate image"><i class="fa-solid fa-camera"></i></button>
+        <div class="overlay"><h3>Certificate 1</h3><small>Upload an image in Settings to customize</small></div>
+      </div>
+      <div class="certificate reveal" style="transition-delay:.08s">
+        <div class="certificate-placeholder" id="certificate-placeholder-c2"><i class="fa-solid fa-certificate"></i><span>Add certificate image</span></div>
+        <img id="proj-img-c2" alt="Certificate 2" style="display:none">
+        <button class="project-photo-change" type="button" data-change-photo="c2" aria-label="Add or change Certificate 2 image" title="Add or change certificate image"><i class="fa-solid fa-camera"></i></button>
+        <div class="overlay"><h3>Certificate 2</h3><small>Upload an image in Settings to customize</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT / PRINCIPLES ================= -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>About me</h2><p>How I think about design</p></div>
+    <p class="about-intro reveal">I'm a Bachelor of Science in Information Technology student focused on creating clean, human-centered digital experiences. I believe great design starts with understanding people — then everything else follows: structure, hierarchy, and beauty that serves a purpose.</p>
+    <div class="about-layout">
+      <div class="skills-panel reveal">
+        <h3><i class="fa-solid fa-star"></i> Skills</h3>
+        <div class="skill-list">
+          <div class="skill-row">
+            <div class="skill-top"><span>Web Design</span><span>92%</span></div>
+            <div class="skill-bar"><i style="width:92%"></i></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-top"><span>HTML / JavaScript</span><span>89%</span></div>
+            <div class="skill-bar"><i style="width:89%"></i></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-top"><span>Python</span><span>85%</span></div>
+            <div class="skill-bar"><i style="width:85%"></i></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-top"><span>UI/UX Thinking</span><span>90%</span></div>
+            <div class="skill-bar"><i style="width:90%"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="skills-panel reveal" style="transition-delay:.08s">
+        <h3><i class="fa-solid fa-lightbulb"></i> My Approach</h3>
+        <div class="skill-list">
+          <div class="skill-row">
+            <div class="skill-top"><span>Research &amp; empathy</span><span>94%</span></div>
+            <div class="skill-bar"><i style="width:94%"></i></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-top"><span>Prototype &amp; iterate</span><span>88%</span></div>
+            <div class="skill-bar"><i style="width:88%"></i></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-top"><span>Product thinking</span><span>86%</span></div>
+            <div class="skill-bar"><i style="width:86%"></i></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-top"><span>Accessibility</span><span>91%</span></div>
+            <div class="skill-bar"><i style="width:91%"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="principles">
+      <div class="p-card reveal"><i class="fa-solid fa-users"></i><h3>User Needs</h3><p>Start with user needs. Test second-hand information about users with caution. Focus on user outcomes and design with data.</p></div>
+      <div class="p-card reveal" style="transition-delay:.08s"><i class="fa-solid fa-layer-group"></i><h3>Structure &amp; Hierarchy</h3><p>Create structure and hierarchy. Give users clear responses to the actions they take. Build consistency into every screen.</p></div>
+      <div class="p-card reveal" style="transition-delay:.16s"><i class="fa-solid fa-bolt"></i><h3>Effectiveness</h3><p>Your design should work everywhere — responsive is not only screen size. Leverage technology to help users.</p></div>
+      <div class="p-card reveal" style="transition-delay:.24s"><i class="fa-solid fa-wand-magic-sparkles"></i><h3>Aesthetics</h3><p>Accessibility is not a bonus feature. First impressions do matter — take the challenge and delight your users.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS FOR ================= -->
+<section class="brands">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>Projects For</h2></div>
+    <div class="brand-row reveal">
+      <span class="brand"><i class="fa-brands fa-microsoft"></i>Microsoft</span>
+      <span class="brand"><i class="fa-brands fa-google"></i>Google</span>
+      <span class="brand"><i class="fa-brands fa-spotify"></i>Spotify</span>
+      <span class="brand"><i class="fa-brands fa-airbnb"></i>Airbnb</span>
+      <span class="brand"><i class="fa-brands fa-figma"></i>Figma</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="testimonials">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>People saying</h2></div>
+    <div class="testi-grid">
+      <div class="t-card reveal">
+        <i class="fa-solid fa-quote-left"></i>
+        <p>Mc Alther is very straightforward to work with and always comes up with solutions that balance beauty and usability perfectly.</p>
+        <div class="t-author"><span class="t-ava">DK</span><div><h4>Daniel Kim</h4><small>Product Director</small></div></div>
+      </div>
+      <div class="t-card reveal" style="transition-delay:.08s">
+        <i class="fa-solid fa-quote-left"></i>
+        <p>He transformed our messy requirements into a clean, intuitive interface. Our users noticed the difference immediately.</p>
+        <div class="t-author"><span class="t-ava">AM</span><div><h4>Amina Mohmed</h4><small>Startup Founder</small></div></div>
+      </div>
+      <div class="t-card reveal" style="transition-delay:.16s">
+        <i class="fa-solid fa-quote-left"></i>
+        <p>Professional, fast, and detail-obsessed. The design system he delivered made our whole team ship features quicker.</p>
+        <div class="t-author"><span class="t-ava">JR</span><div><h4>James Rivera</h4><small>Engineering Lead</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2 class="reveal">Have a project in mind?<br><span>Let's work together.</span></h2>
+    <p class="reveal">I'm available for freelance projects and full-time opportunities. Drop me a message and let's create something great.</p>
+    <button type="button" class="btn btn-primary reveal" id="contactButton" aria-haspopup="dialog" aria-controls="contactModal">Contact me <i class="fa-solid fa-paper-plane"></i></button>
+  </div>
+</section>
+
+<div class="contact-modal-overlay" id="contactModal" aria-hidden="true">
+  <div class="contact-modal-panel" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+    <div class="contact-modal-head">
+      <h3 id="contactTitle">Contact me</h3>
+      <button class="contact-close" id="closeContactModal" aria-label="Close contact information"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="contact-list">
+      <div class="contact-item">
+        <i class="fa-solid fa-phone"></i>
+        <a href="tel:+639972666855"><strong>Phone</strong><span>+63 997 266 6855</span></a>
+      </div>
+      <div class="contact-item">
+        <i class="fa-solid fa-envelope"></i>
+        <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=vadilmcalther05%40gmail.com" target="_blank" rel="noopener noreferrer"><strong>Gmail</strong><span>vadilmcalther05@gmail.com</span></a>
+      </div>
+      <div class="contact-item">
+        <i class="fa-brands fa-x-twitter"></i>
+        <a href="https://x.com/mcalther" target="_blank" rel="noopener noreferrer"><strong>X</strong><span>@mcalther</span></a>
+      </div>
+      <div class="contact-item">
+        <i class="fa-brands fa-facebook-f"></i>
+        <a href="https://facebook.com/mcalther" target="_blank" rel="noopener noreferrer"><strong>Facebook</strong><span>facebook.com/mcalther</span></a>
+      </div>
+      <div class="contact-item">
+        <i class="fa-solid fa-comment-sms"></i>
+        <a href="sms:+639972666855"><strong>SMS</strong><span>+63 997 266 6855</span></a>
+      </div>
+      <div class="contact-item">
+        <i class="fa-brands fa-instagram"></i>
+        <a href="https://instagram.com/mcalther" target="_blank" rel="noopener noreferrer"><strong>Instagram</strong><span>@mcalther</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <small>© <span id="year">2025</span> Mc Alther G. Vadil · Bachelor of Science in Information Technology</small>
+  </div>
+</footer>
+
+<!-- ================= SETTINGS MODAL ================= -->
+<div class="settings-overlay" id="settingsModal" aria-hidden="true">
+  <div class="settings-panel" role="dialog" aria-modal="true" aria-label="Settings">
+    <div class="settings-head">
+      <h3><i class="fa-solid fa-gear"></i> Settings — Photos</h3>
+      <button class="settings-close" id="closeSettings" aria-label="Close settings"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="settings-body">
+      <p class="settings-hint">Upload an image for your profile, projects, or certificates below. Your custom images are <b>saved in this browser</b> and stay even after refreshing the page.</p>
+
+      <div class="photo-item">
+        <span class="pp-preview" id="pp-prev-profile">Preview</span>
+        <div class="pp-info"><h4>Profile photo</h4><small>Your photo in the home section</small></div>
+        <div class="pp-actions">
+          <input type="file" id="file-profile" accept="image/*" hidden>
+          <button type="button" class="pp-btn" onclick="document.getElementById('file-profile').click()"><i class="fa-solid fa-upload"></i> Change</button>
+          <button type="button" class="pp-btn restore" data-reset="profile"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+        </div>
+      </div>
+
+      <div class="photo-item">
+        <span class="pp-preview" id="pp-prev-p1">Preview</span>
+        <div class="pp-info"><h4>Animation</h4><small>3D · Blender · Rendering</small></div>
+        <div class="pp-actions">
+          <input type="file" id="file-p1" accept="image/*" hidden>
+          <button type="button" class="pp-btn" onclick="document.getElementById('file-p1').click()"><i class="fa-solid fa-upload"></i> Change</button>
+          <button type="button" class="pp-btn restore" data-reset="p1"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+        </div>
+      </div>
+
+      <div class="photo-item">
+        <span class="pp-preview" id="pp-prev-p2">Preview</span>
+        <div class="pp-info"><h4>GWA (General Weighted Average)</h4><small>Python · PyCharm · MySQL</small></div>
+        <div class="pp-actions">
+          <input type="file" id="file-p2" accept="image/*" hidden>
+          <button type="button" class="pp-btn" onclick="document.getElementById('file-p2').click()"><i class="fa-solid fa-upload"></i> Change</button>
+          <button type="button" class="pp-btn restore" data-reset="p2"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+        </div>
+      </div>
+
+      <div class="photo-item">
+        <span class="pp-preview" id="pp-prev-p3">Preview</span>
+        <div class="pp-info"><h4>Point of Sales</h4><small>Python · PyCharm</small></div>
+        <div class="pp-actions">
+          <input type="file" id="file-p3" accept="image/*" hidden>
+          <button type="button" class="pp-btn" onclick="document.getElementById('file-p3').click()"><i class="fa-solid fa-upload"></i> Change</button>
+          <button type="button" class="pp-btn restore" data-reset="p3"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+        </div>
+      </div>
+
+      <div class="photo-item">
+        <span class="pp-preview" id="pp-prev-p4">Preview</span>
+        <div class="pp-info"><h4>PlayMate Chatbot AI</h4><small>AI · Chatbot · NLP</small></div>
+        <div class="pp-actions">
+          <input type="file" id="file-p4" accept="image/*" hidden>
+          <button type="button" class="pp-btn" onclick="document.getElementById('file-p4').click()"><i class="fa-solid fa-upload"></i> Change</button>
+          <button type="button" class="pp-btn restore" data-reset="p4"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+        </div>
+      </div>
+
+      <div class="photo-item">
+        <span class="pp-preview" id="pp-prev-p6">Preview</span>
+        <div class="pp-info"><h4>First Aid Application</h4><small>Mobile · GlideApps</small></div>
+        <div class="pp-actions">
+          <input type="file" id="file-p6" accept="image/*" hidden>
+          <button type="button" class="pp-btn" onclick="document.getElementById('file-p6').click()"><i class="fa-solid fa-upload"></i> Change</button>
+          <button type="button" class="pp-btn restore" data-reset="p6"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+        </div>
+      </div>
+
+      <div class="photo-item">
+        <span class="pp-preview" id="pp-prev-p7">Preview</span>
+        <div class="pp-info"><h4>Student Portal System</h4><small>Python · PyCharm · MySQL</small></div>
+        <div class="pp-actions">
+          <input type="file" id="file-p7" accept="image/*" hidden>
+          <button type="button" class="pp-btn" onclick="document.getElementById('file-p7').click()"><i class="fa-solid fa-upload"></i> Change</button>
+          <button type="button" class="pp-btn restore" data-reset="p7"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+        </div>
+      </div>
+
+      <div class="photo-item">
+        <span class="pp-preview" id="pp-prev-c1">Preview</span>
+        <div class="pp-info"><h4>Certificate 1</h4><small>Certificate gallery image</small></div>
+        <div class="pp-actions">
+          <input type="file" id="file-c1" accept="image/*" hidden>
+          <button type="button" class="pp-btn" onclick="document.getElementById('file-c1').click()"><i class="fa-solid fa-upload"></i> Change</button>
+          <button type="button" class="pp-btn restore" data-reset="c1"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+        </div>
+      </div>
+
+      <div class="photo-item">
+        <span class="pp-preview" id="pp-prev-c2">Preview</span>
+        <div class="pp-info"><h4>Certificate 2</h4><small>Certificate gallery image</small></div>
+        <div class="pp-actions">
+          <input type="file" id="file-c2" accept="image/*" hidden>
+          <button type="button" class="pp-btn" onclick="document.getElementById('file-c2').click()"><i class="fa-solid fa-upload"></i> Change</button>
+          <button type="button" class="pp-btn restore" data-reset="c2"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+        </div>
+      </div>
+
+      <button type="button" class="reset-all" id="resetAllBtn"><i class="fa-solid fa-arrows-rotate"></i> Reset All Photos to Default</button>
+
+      <p class="settings-note"><i class="fa-solid fa-circle-info"></i> Supports JPG, PNG, WebP &amp; GIF. Images are automatically resized for fast loading.</p>
+    </div>
+  </div>
+</div>
+
+<div class="search-toast" id="searchToast" style="display:none"></div>
+
+<script>
+const $ = s => document.querySelector(s);
+
+/* Navbar scroll state */
+const navbar = $('#navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', scrollY > 30), {passive:true});
+
+/* Mobile menu */
+const hamburger = $('#hamburger'), navLinks = $('#navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  navLinks.classList.remove('open');
+}));
+
+/* ================= SETTINGS: PROJECT PHOTO CUSTOMIZATION ================= */
+const settingsModal = $('#settingsModal');
+const PROJECT_IDS = ['p1','p2','p3','p4','p6','p7'];
+const CERTIFICATE_IDS = ['c1','c2'];
+const PHOTO_IDS = ['profile', ...PROJECT_IDS, ...CERTIFICATE_IDS];
+const DEFAULTS = {};
+const photoStorageKey = id => id === 'profile' ? 'profilePhoto' :
+  PROJECT_IDS.includes(id) ? 'projPhoto_' + id : 'certPhoto_' + id;
+
+/* Remember each image's original URL */
+PHOTO_IDS.forEach(id => {
+  const img = document.getElementById('proj-img-' + id);
+  if (img) DEFAULTS[id] = img.getAttribute('src');
+});
+
+/* Open / close modal */
+ $('#settingsBtn').addEventListener('click', () => {
+  PHOTO_IDS.forEach(id => {
+    const prev = document.getElementById('pp-prev-' + id);
+    const img = document.getElementById('proj-img-' + id);
+    if (prev && img && img.style.display !== 'none'){
+      setPhotoPreview(id, img.src);
+    }
+  });
+  settingsModal.classList.add('open');
+  settingsModal.setAttribute('aria-hidden','false');
+});
+function closeSettings(){
+  settingsModal.classList.remove('open');
+  settingsModal.setAttribute('aria-hidden','true');
+}
+ $('#closeSettings').addEventListener('click', closeSettings);
+settingsModal.addEventListener('click', e => { if (e.target === settingsModal) closeSettings(); });
+window.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && settingsModal.classList.contains('open')) closeSettings();
+});
+
+/* Apply a custom photo to its image + preview */
+function applyProjectPhoto(id, dataUrl){
+  const img = document.getElementById('proj-img-' + id);
+  const photo = dataUrl || DEFAULTS[id];
+  if (img){
+    if (photo){ img.src = photo; img.style.display = ''; }
+    else { img.removeAttribute('src'); img.style.display = 'none'; }
+  }
+  const placeholder = document.getElementById('certificate-placeholder-' + id);
+  if (placeholder) placeholder.style.display = photo ? 'none' : '';
+  if (photo) setPhotoPreview(id, photo);
+  else {
+    const prev = document.getElementById('pp-prev-' + id);
+    if (prev) prev.textContent = 'Preview';
+  }
+}
+function setPhotoPreview(id, src){
+  const prev = document.getElementById('pp-prev-' + id);
+  if (!prev) return;
+  const previewImage = document.createElement('img');
+  previewImage.alt = '';
+  previewImage.src = src;
+  prev.replaceChildren(previewImage);
+}
+
+/* On page load: restore any saved custom photos */
+try {
+  PHOTO_IDS.forEach(id => {
+    const saved = localStorage.getItem(photoStorageKey(id));
+    if (saved) applyProjectPhoto(id, saved);
+  });
+} catch(e){}
+
+/* Upload handler: resize image so it always fits in localStorage */
+PHOTO_IDS.forEach(id => {
+  const fileInput = document.getElementById('file-' + id);
+  if (!fileInput) return;
+  fileInput.addEventListener('change', () => {
+    const file = fileInput.files[0];
+    if (!file || !file.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const image = new Image();
+      image.onload = () => {
+        const MAX = 900;
+        let w = image.width, h = image.height;
+        if (w > h && w > MAX){ h = Math.round(h * MAX / w); w = MAX; }
+        else if (h >= w && h > MAX){ w = Math.round(w * MAX / h); h = MAX; }
+        const canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(image, 0, 0, w, h);
+        const dataUrl = canvas.toDataURL('image/jpeg', .88);
+        applyProjectPhoto(id, dataUrl);
+        try { localStorage.setItem(photoStorageKey(id), dataUrl); }
+        catch(err){ alert('Photo applied, but it was too large to save permanently. Try a smaller image.'); }
+      };
+      image.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+    fileInput.value = '';
+  });
+});
+
+/* Let images open their matching image picker directly */
+document.querySelectorAll('[data-change-photo]').forEach(button => {
+  button.addEventListener('click', () => {
+    const fileInput = document.getElementById('file-' + button.dataset.changePhoto);
+    if (fileInput) fileInput.click();
+  });
+});
+
+/* Reset individual project photo */
+document.querySelectorAll('.pp-btn.restore').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const id = btn.dataset.reset;
+    try { localStorage.removeItem(photoStorageKey(id)); } catch(e){}
+    applyProjectPhoto(id, DEFAULTS[id]);
+  });
+});
+
+/* Reset ALL project photos */
+ $('#resetAllBtn').addEventListener('click', () => {
+  PHOTO_IDS.forEach(id => {
+    try { localStorage.removeItem(photoStorageKey(id)); } catch(e){}
+    applyProjectPhoto(id, DEFAULTS[id]);
+  });
+});
+
+/* Contact modal */
+const contactButton = $('#contactButton');
+const contactModal = $('#contactModal');
+const closeContactModal = $('#closeContactModal');
+const contactDialog = contactModal.querySelector('[role="dialog"]');
+let contactTrigger = null;
+
+function openContactModal(){
+  contactTrigger = document.activeElement;
+  contactModal.classList.add('open');
+  contactModal.setAttribute('aria-hidden','false');
+  closeContactModal.focus();
+}
+
+function closeContact(){
+  contactModal.classList.remove('open');
+  contactModal.setAttribute('aria-hidden','true');
+  if (contactTrigger instanceof HTMLElement) contactTrigger.focus();
+}
+
+contactButton.addEventListener('click', openContactModal);
+closeContactModal.addEventListener('click', closeContact);
+contactModal.addEventListener('click', e => { if (e.target === contactModal) closeContact(); });
+contactDialog.addEventListener('keydown', e => {
+  if (e.key !== 'Tab') return;
+  const focusable = [...contactDialog.querySelectorAll('a[href], button:not([disabled])')];
+  const first = focusable[0], last = focusable[focusable.length - 1];
+  if (e.shiftKey && document.activeElement === first){
+    e.preventDefault();
+    last.focus();
+  } else if (!e.shiftKey && document.activeElement === last){
+    e.preventDefault();
+    first.focus();
+  }
+});
+window.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && contactModal.classList.contains('open')) closeContact();
+});
+
+/* Active link highlight */
+const hasIO = 'IntersectionObserver' in window;
+const sections = [...document.querySelectorAll('section[id], header[id]')];
+if (hasIO){
+  const navIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting){
+        document.querySelectorAll('.nav-links a').forEach(a =>
+          a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, {rootMargin:'-40% 0px -55% 0px'});
+  sections.forEach(s => navIO.observe(s));
+
+  /* Reveal on scroll */
+  const revealIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting){ e.target.classList.add('visible'); revealIO.unobserve(e.target); }
+    });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el => revealIO.observe(el));
+} else {
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+}
+
+/* Year */
+ $('#year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

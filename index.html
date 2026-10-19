@@ -45,56 +45,6 @@ img{max-width:100%;display:block}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-/* ============ SETTINGS BUTTON + MODAL ============ */
-.settings-btn{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.06);border:1px solid var(--border);
-  color:var(--text);border-radius:999px;padding:9px 16px;font-family:'Poppins';font-size:.82rem;font-weight:500;
-  cursor:pointer;transition:.25s;white-space:nowrap}
-.settings-btn i{color:var(--purple);transition:.4s}
-.settings-btn:hover{border-color:var(--purple);transform:translateY(-2px)}
-.settings-btn:hover i{transform:rotate(90deg)}
-@media(max-width:760px){.settings-btn span{display:none}.settings-btn{padding:10px 13px}}
-.settings-overlay{position:fixed;inset:0;background:rgba(4,3,8,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
-  z-index:2000;display:grid;place-items:center;padding:20px;opacity:0;pointer-events:none;transition:.25s}
-.settings-overlay.open{opacity:1;pointer-events:auto}
-.settings-panel{width:min(620px,100%);max-height:88vh;overflow-y:auto;background:#0f0d15;border:1px solid var(--border);
-  border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.6);transform:translateY(16px) scale(.97);transition:.25s}
-.settings-overlay.open .settings-panel{transform:none}
-.settings-head{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;
-  border-bottom:1px solid var(--border);position:sticky;top:0;background:#0f0d15;z-index:2}
-.settings-head h3{font-size:1.05rem;font-weight:600;display:flex;gap:11px;align-items:center}
-.settings-head h3 i{color:var(--purple)}
-.settings-close{background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;padding:6px 10px;border-radius:8px;transition:.2s}
-.settings-close:hover{background:rgba(255,255,255,.08);color:#fff}
-.settings-body{padding:22px 24px 28px}
-.settings-hint{font-size:.84rem;color:var(--muted);line-height:1.7;margin-bottom:22px}
-.settings-hint b{color:var(--text);font-weight:500}
-.photo-item{display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07)}
-.photo-item:last-of-type{border-bottom:none}
-.pp-preview{width:74px;height:56px;flex-shrink:0;border-radius:8px;overflow:hidden;border:2px solid var(--border);
-  background:linear-gradient(135deg,#1c1526,#241a33);display:grid;place-items:center;color:var(--muted);font-size:.68rem;text-align:center;line-height:1.4;padding:4px}
-.pp-preview img{width:100%;height:100%;object-fit:cover}
-.pp-info{flex:1;min-width:0}
-.pp-info h4{font-size:.88rem;font-weight:600}
-.pp-info small{font-size:.72rem;color:var(--muted)}
-.pp-actions{display:flex;flex-direction:column;gap:7px}
-.pp-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;background:rgba(255,255,255,.06);
-  border:1px solid var(--border);color:var(--text);border-radius:8px;padding:7px 14px;font-family:'Poppins';
-  font-size:.74rem;font-weight:500;cursor:pointer;transition:.2s;white-space:nowrap}
-.pp-btn:hover{border-color:var(--purple);color:var(--purple)}
-.pp-btn.restore{color:var(--muted)}
-.pp-btn.restore:hover{border-color:#f87171;color:#f87171}
-.settings-note{font-size:.74rem;color:var(--muted);margin-top:20px;display:flex;gap:9px;align-items:center;line-height:1.6}
-.settings-note i{color:var(--purple);flex-shrink:0}
-.reset-all{margin-top:22px;width:100%;justify-content:center;display:inline-flex;align-items:center;gap:9px;
-  background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.35);color:#f87171;border-radius:10px;
-  padding:12px;font-family:'Poppins';font-size:.85rem;font-weight:600;cursor:pointer;transition:.25s}
-.reset-all:hover{background:rgba(248,113,113,.16)}
-@media(max-width:520px){
-  .photo-item{flex-wrap:wrap}
-  .pp-actions{flex-direction:row;width:100%}
-  .pp-btn{flex:1}
-}
-
 /* ============ HERO ============ */
 .hero{position:relative;padding:120px 0 70px;overflow:hidden}
 .hero::before{content:'';position:absolute;top:-220px;left:-180px;width:640px;height:640px;
@@ -129,7 +79,6 @@ img{max-width:100%;display:block}
 .hero-right img{position:absolute;right:0;top:-70px;width:86%;height:calc(100% + 70px);
   object-fit:cover;object-position:center top;z-index:1;border-radius:2px;
   box-shadow:0 30px 70px rgba(0,0,0,.5);background:#1a1522}
-.hero-right .project-photo-change{top:-56px;right:12px;z-index:2;opacity:1;pointer-events:auto;transform:none}
 
 /* ============ SECTION HEADINGS ============ */
 .sec-head{text-align:center;margin-bottom:56px}
@@ -142,15 +91,9 @@ img{max-width:100%;display:block}
 .project{position:relative;overflow:hidden;border-radius:8px;cursor:pointer;background:linear-gradient(135deg,#1c1526,#241a33)}
 .project img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease,opacity .4s}
 .project:hover img{transform:scale(1.05);opacity:.75}
-.project-photo-change{position:absolute;top:14px;right:14px;z-index:1;width:38px;height:38px;display:grid;place-items:center;
-  border:1px solid rgba(255,255,255,.35);border-radius:50%;background:rgba(11,10,14,.78);color:#fff;font-size:.9rem;
-  cursor:pointer;opacity:0;pointer-events:none;transform:translateY(-4px);transition:.2s}
-.project:hover .project-photo-change,.project:focus-within .project-photo-change{opacity:1;pointer-events:auto;transform:none}
-.project-photo-change:hover,.project-photo-change:focus-visible{background:var(--purple-dark);border-color:var(--purple);outline:none}
-@media(hover:none){.project-photo-change{opacity:1;pointer-events:auto;transform:none}}
-.project .overlay,.certificate .overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;
+.project .overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;
   padding:22px;background:linear-gradient(180deg,transparent 45%,rgba(8,6,12,.9));opacity:0;transition:.35s}
-.project:hover .overlay,.certificate:hover .overlay{opacity:1}
+.project:hover .overlay{opacity:1}
 .overlay h3{font-size:1.05rem;font-weight:600}
 .overlay small{color:var(--purple);font-size:.75rem;letter-spacing:1px;text-transform:uppercase;margin-top:4px}
 .p1{grid-column:span 7;height:340px}
@@ -165,13 +108,9 @@ img{max-width:100%;display:block}
 .certificates-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
 .certificate{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.1);border-radius:8px;
   background:linear-gradient(135deg,#1c1526,#241a33)}
-.certificate img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .5s ease,opacity .4s}
-.certificate:hover img{transform:scale(1.04);opacity:.75}
-.certificate-placeholder{aspect-ratio:4/3;display:grid;place-items:center;gap:10px;color:var(--muted);font-size:.85rem}
+.certificate{min-height:220px;display:grid;place-items:center;text-align:center;padding:32px}
+.certificate-placeholder{display:grid;place-items:center;gap:12px;color:var(--muted);font-size:.85rem}
 .certificate-placeholder i{font-size:2rem;color:var(--purple)}
-.certificate .overlay{opacity:1}
-.certificate:hover .overlay{background:linear-gradient(180deg,transparent 30%,rgba(8,6,12,.94))}
-.certificate .project-photo-change{opacity:1;pointer-events:auto;transform:none}
 
 /* ============ ABOUT / PRINCIPLES ============ */
 .about{padding:90px 0;background:var(--bg2);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05)}
@@ -290,7 +229,6 @@ img{max-width:100%;display:block}
       <li><a href="#certificates">Certificates</a></li>
       <li><a href="#contact">Contact me</a></li>
     </ul>
-    <button class="settings-btn" id="settingsBtn"><i class="fa-solid fa-gear"></i><span>Settings</span></button>
     <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -314,8 +252,7 @@ img{max-width:100%;display:block}
     </div>
     <div class="hero-right">
       <div class="purple-block"></div>
-      <img id="proj-img-profile" src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?auto=format&fit=crop&w=800&q=80" alt="Mc Alther G. Vadil — student photo" onerror="this.style.display='none'">
-      <button class="project-photo-change" type="button" data-change-photo="profile" aria-label="Change profile photo" title="Change profile photo"><i class="fa-solid fa-camera"></i></button>
+      <img id="proj-img-profile" src="portfolio-profile.jpg" alt="Mc Alther G. Vadil — student photo">
     </div>
   </div>
 </header>
@@ -327,38 +264,32 @@ img{max-width:100%;display:block}
     <div class="projects-grid">
 
       <div class="project p1 reveal">
-        <img id="proj-img-p1" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=900&q=80" alt="Animation project — 3D abstract render" onerror="this.style.display='none'">
-        <button class="project-photo-change" type="button" data-change-photo="p1" aria-label="Change Animation project image" title="Change project image"><i class="fa-solid fa-camera"></i></button>
+        <img id="proj-img-p1" src="portfolio-p1.jpg" alt="Animation project — 3D abstract render">
         <div class="overlay"><h3>Animation</h3><small>3D · Blender · Rendering</small></div>
       </div>
 
       <div class="project p2 reveal" style="transition-delay:.08s">
-        <img id="proj-img-p2" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=700&q=80" alt="GWA project — calculator with grade papers" onerror="this.style.display='none'">
-        <button class="project-photo-change" type="button" data-change-photo="p2" aria-label="Change GWA project image" title="Change project image"><i class="fa-solid fa-camera"></i></button>
+        <img id="proj-img-p2" src="portfolio-p2.jpg" alt="GWA project — calculator with grade papers">
         <div class="overlay"><h3>GWA (General Weighted Average)</h3><small>Python · PyCharm · MySQL</small></div>
       </div>
 
       <div class="project p3 reveal">
-        <img id="proj-img-p3" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=700&q=80" alt="Point of Sales project — card payment terminal" onerror="this.style.display='none'">
-        <button class="project-photo-change" type="button" data-change-photo="p3" aria-label="Change Point of Sales project image" title="Change project image"><i class="fa-solid fa-camera"></i></button>
+        <img id="proj-img-p3" src="portfolio-p3.jpg" alt="Point of Sales project — card payment terminal">
         <div class="overlay"><h3>Point of Sales</h3><small>Python · PyCharm</small></div>
       </div>
 
       <div class="project p4 reveal" style="transition-delay:.08s">
-        <img id="proj-img-p4" src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=900&q=80" alt="PlayMate Chatbot AI project — robot" onerror="this.style.display='none'">
-        <button class="project-photo-change" type="button" data-change-photo="p4" aria-label="Change PlayMate Chatbot AI project image" title="Change project image"><i class="fa-solid fa-camera"></i></button>
+        <img id="proj-img-p4" src="portfolio-p4.jpg" alt="PlayMate Chatbot AI project — robot">
         <div class="overlay"><h3>PlayMate Chatbot AI</h3><small>AI · Chatbot · NLP</small></div>
       </div>
 
       <div class="project p6 reveal" style="transition-delay:.08s">
-        <img id="proj-img-p6" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?auto=format&fit=crop&w=600&q=80" alt="First Aid Application project — doctor with medical tablet" onerror="this.style.display='none'">
-        <button class="project-photo-change" type="button" data-change-photo="p6" aria-label="Change First Aid Application project image" title="Change project image"><i class="fa-solid fa-camera"></i></button>
+        <img id="proj-img-p6" src="portfolio-p6.jpg" alt="First Aid Application project — doctor with medical tablet">
         <div class="overlay"><h3>First Aid Application</h3><small>Mobile · GlideApps</small></div>
       </div>
 
       <div class="project p7 reveal" style="transition-delay:.16s">
-        <img id="proj-img-p7" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Student Portal System project — dashboard on laptop" onerror="this.style.display='none'">
-        <button class="project-photo-change" type="button" data-change-photo="p7" aria-label="Change Student Portal System project image" title="Change project image"><i class="fa-solid fa-camera"></i></button>
+        <img id="proj-img-p7" src="portfolio-p7.jpg" alt="Student Portal System project — dashboard on laptop">
         <div class="overlay"><h3>Student Portal System</h3><small>Python · PyCharm · MySQL</small></div>
       </div>
 
@@ -372,16 +303,10 @@ img{max-width:100%;display:block}
     <div class="sec-head reveal"><h2>Certificates</h2><p>Certifications and achievements</p></div>
     <div class="certificates-grid">
       <div class="certificate reveal">
-        <div class="certificate-placeholder" id="certificate-placeholder-c1"><i class="fa-solid fa-certificate"></i><span>Add certificate image</span></div>
-        <img id="proj-img-c1" alt="Certificate 1" style="display:none">
-        <button class="project-photo-change" type="button" data-change-photo="c1" aria-label="Add or change Certificate 1 image" title="Add or change certificate image"><i class="fa-solid fa-camera"></i></button>
-        <div class="overlay"><h3>Certificate 1</h3><small>Upload an image in Settings to customize</small></div>
+        <div class="certificate-placeholder"><i class="fa-solid fa-certificate"></i><span>Certificate details coming soon</span></div>
       </div>
       <div class="certificate reveal" style="transition-delay:.08s">
-        <div class="certificate-placeholder" id="certificate-placeholder-c2"><i class="fa-solid fa-certificate"></i><span>Add certificate image</span></div>
-        <img id="proj-img-c2" alt="Certificate 2" style="display:none">
-        <button class="project-photo-change" type="button" data-change-photo="c2" aria-label="Add or change Certificate 2 image" title="Add or change certificate image"><i class="fa-solid fa-camera"></i></button>
-        <div class="overlay"><h3>Certificate 2</h3><small>Upload an image in Settings to customize</small></div>
+        <div class="certificate-placeholder"><i class="fa-solid fa-certificate"></i><span>Certificate details coming soon</span></div>
       </div>
     </div>
   </div>
@@ -534,113 +459,6 @@ img{max-width:100%;display:block}
   </div>
 </footer>
 
-<!-- ================= SETTINGS MODAL ================= -->
-<div class="settings-overlay" id="settingsModal" aria-hidden="true">
-  <div class="settings-panel" role="dialog" aria-modal="true" aria-label="Settings">
-    <div class="settings-head">
-      <h3><i class="fa-solid fa-gear"></i> Settings — Photos</h3>
-      <button class="settings-close" id="closeSettings" aria-label="Close settings"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <div class="settings-body">
-      <p class="settings-hint">Upload an image for your profile, projects, or certificates below. Your custom images are <b>saved in this browser</b> and stay even after refreshing the page.</p>
-
-      <div class="photo-item">
-        <span class="pp-preview" id="pp-prev-profile">Preview</span>
-        <div class="pp-info"><h4>Profile photo</h4><small>Your photo in the home section</small></div>
-        <div class="pp-actions">
-          <input type="file" id="file-profile" accept="image/*" hidden>
-          <button type="button" class="pp-btn" onclick="document.getElementById('file-profile').click()"><i class="fa-solid fa-upload"></i> Change</button>
-          <button type="button" class="pp-btn restore" data-reset="profile"><i class="fa-solid fa-rotate-left"></i> Reset</button>
-        </div>
-      </div>
-
-      <div class="photo-item">
-        <span class="pp-preview" id="pp-prev-p1">Preview</span>
-        <div class="pp-info"><h4>Animation</h4><small>3D · Blender · Rendering</small></div>
-        <div class="pp-actions">
-          <input type="file" id="file-p1" accept="image/*" hidden>
-          <button type="button" class="pp-btn" onclick="document.getElementById('file-p1').click()"><i class="fa-solid fa-upload"></i> Change</button>
-          <button type="button" class="pp-btn restore" data-reset="p1"><i class="fa-solid fa-rotate-left"></i> Reset</button>
-        </div>
-      </div>
-
-      <div class="photo-item">
-        <span class="pp-preview" id="pp-prev-p2">Preview</span>
-        <div class="pp-info"><h4>GWA (General Weighted Average)</h4><small>Python · PyCharm · MySQL</small></div>
-        <div class="pp-actions">
-          <input type="file" id="file-p2" accept="image/*" hidden>
-          <button type="button" class="pp-btn" onclick="document.getElementById('file-p2').click()"><i class="fa-solid fa-upload"></i> Change</button>
-          <button type="button" class="pp-btn restore" data-reset="p2"><i class="fa-solid fa-rotate-left"></i> Reset</button>
-        </div>
-      </div>
-
-      <div class="photo-item">
-        <span class="pp-preview" id="pp-prev-p3">Preview</span>
-        <div class="pp-info"><h4>Point of Sales</h4><small>Python · PyCharm</small></div>
-        <div class="pp-actions">
-          <input type="file" id="file-p3" accept="image/*" hidden>
-          <button type="button" class="pp-btn" onclick="document.getElementById('file-p3').click()"><i class="fa-solid fa-upload"></i> Change</button>
-          <button type="button" class="pp-btn restore" data-reset="p3"><i class="fa-solid fa-rotate-left"></i> Reset</button>
-        </div>
-      </div>
-
-      <div class="photo-item">
-        <span class="pp-preview" id="pp-prev-p4">Preview</span>
-        <div class="pp-info"><h4>PlayMate Chatbot AI</h4><small>AI · Chatbot · NLP</small></div>
-        <div class="pp-actions">
-          <input type="file" id="file-p4" accept="image/*" hidden>
-          <button type="button" class="pp-btn" onclick="document.getElementById('file-p4').click()"><i class="fa-solid fa-upload"></i> Change</button>
-          <button type="button" class="pp-btn restore" data-reset="p4"><i class="fa-solid fa-rotate-left"></i> Reset</button>
-        </div>
-      </div>
-
-      <div class="photo-item">
-        <span class="pp-preview" id="pp-prev-p6">Preview</span>
-        <div class="pp-info"><h4>First Aid Application</h4><small>Mobile · GlideApps</small></div>
-        <div class="pp-actions">
-          <input type="file" id="file-p6" accept="image/*" hidden>
-          <button type="button" class="pp-btn" onclick="document.getElementById('file-p6').click()"><i class="fa-solid fa-upload"></i> Change</button>
-          <button type="button" class="pp-btn restore" data-reset="p6"><i class="fa-solid fa-rotate-left"></i> Reset</button>
-        </div>
-      </div>
-
-      <div class="photo-item">
-        <span class="pp-preview" id="pp-prev-p7">Preview</span>
-        <div class="pp-info"><h4>Student Portal System</h4><small>Python · PyCharm · MySQL</small></div>
-        <div class="pp-actions">
-          <input type="file" id="file-p7" accept="image/*" hidden>
-          <button type="button" class="pp-btn" onclick="document.getElementById('file-p7').click()"><i class="fa-solid fa-upload"></i> Change</button>
-          <button type="button" class="pp-btn restore" data-reset="p7"><i class="fa-solid fa-rotate-left"></i> Reset</button>
-        </div>
-      </div>
-
-      <div class="photo-item">
-        <span class="pp-preview" id="pp-prev-c1">Preview</span>
-        <div class="pp-info"><h4>Certificate 1</h4><small>Certificate gallery image</small></div>
-        <div class="pp-actions">
-          <input type="file" id="file-c1" accept="image/*" hidden>
-          <button type="button" class="pp-btn" onclick="document.getElementById('file-c1').click()"><i class="fa-solid fa-upload"></i> Change</button>
-          <button type="button" class="pp-btn restore" data-reset="c1"><i class="fa-solid fa-rotate-left"></i> Reset</button>
-        </div>
-      </div>
-
-      <div class="photo-item">
-        <span class="pp-preview" id="pp-prev-c2">Preview</span>
-        <div class="pp-info"><h4>Certificate 2</h4><small>Certificate gallery image</small></div>
-        <div class="pp-actions">
-          <input type="file" id="file-c2" accept="image/*" hidden>
-          <button type="button" class="pp-btn" onclick="document.getElementById('file-c2').click()"><i class="fa-solid fa-upload"></i> Change</button>
-          <button type="button" class="pp-btn restore" data-reset="c2"><i class="fa-solid fa-rotate-left"></i> Reset</button>
-        </div>
-      </div>
-
-      <button type="button" class="reset-all" id="resetAllBtn"><i class="fa-solid fa-arrows-rotate"></i> Reset All Photos to Default</button>
-
-      <p class="settings-note"><i class="fa-solid fa-circle-info"></i> Supports JPG, PNG, WebP &amp; GIF. Images are automatically resized for fast loading.</p>
-    </div>
-  </div>
-</div>
-
 <div class="search-toast" id="searchToast" style="display:none"></div>
 
 <script>
@@ -660,131 +478,6 @@ navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   hamburger.classList.remove('open');
   navLinks.classList.remove('open');
 }));
-
-/* ================= SETTINGS: PROJECT PHOTO CUSTOMIZATION ================= */
-const settingsModal = $('#settingsModal');
-const PROJECT_IDS = ['p1','p2','p3','p4','p6','p7'];
-const CERTIFICATE_IDS = ['c1','c2'];
-const PHOTO_IDS = ['profile', ...PROJECT_IDS, ...CERTIFICATE_IDS];
-const DEFAULTS = {};
-const photoStorageKey = id => id === 'profile' ? 'profilePhoto' :
-  PROJECT_IDS.includes(id) ? 'projPhoto_' + id : 'certPhoto_' + id;
-
-/* Remember each image's original URL */
-PHOTO_IDS.forEach(id => {
-  const img = document.getElementById('proj-img-' + id);
-  if (img) DEFAULTS[id] = img.getAttribute('src');
-});
-
-/* Open / close modal */
- $('#settingsBtn').addEventListener('click', () => {
-  PHOTO_IDS.forEach(id => {
-    const prev = document.getElementById('pp-prev-' + id);
-    const img = document.getElementById('proj-img-' + id);
-    if (prev && img && img.style.display !== 'none'){
-      setPhotoPreview(id, img.src);
-    }
-  });
-  settingsModal.classList.add('open');
-  settingsModal.setAttribute('aria-hidden','false');
-});
-function closeSettings(){
-  settingsModal.classList.remove('open');
-  settingsModal.setAttribute('aria-hidden','true');
-}
- $('#closeSettings').addEventListener('click', closeSettings);
-settingsModal.addEventListener('click', e => { if (e.target === settingsModal) closeSettings(); });
-window.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && settingsModal.classList.contains('open')) closeSettings();
-});
-
-/* Apply a custom photo to its image + preview */
-function applyProjectPhoto(id, dataUrl){
-  const img = document.getElementById('proj-img-' + id);
-  const photo = dataUrl || DEFAULTS[id];
-  if (img){
-    if (photo){ img.src = photo; img.style.display = ''; }
-    else { img.removeAttribute('src'); img.style.display = 'none'; }
-  }
-  const placeholder = document.getElementById('certificate-placeholder-' + id);
-  if (placeholder) placeholder.style.display = photo ? 'none' : '';
-  if (photo) setPhotoPreview(id, photo);
-  else {
-    const prev = document.getElementById('pp-prev-' + id);
-    if (prev) prev.textContent = 'Preview';
-  }
-}
-function setPhotoPreview(id, src){
-  const prev = document.getElementById('pp-prev-' + id);
-  if (!prev) return;
-  const previewImage = document.createElement('img');
-  previewImage.alt = '';
-  previewImage.src = src;
-  prev.replaceChildren(previewImage);
-}
-
-/* On page load: restore any saved custom photos */
-try {
-  PHOTO_IDS.forEach(id => {
-    const saved = localStorage.getItem(photoStorageKey(id));
-    if (saved) applyProjectPhoto(id, saved);
-  });
-} catch(e){}
-
-/* Upload handler: resize image so it always fits in localStorage */
-PHOTO_IDS.forEach(id => {
-  const fileInput = document.getElementById('file-' + id);
-  if (!fileInput) return;
-  fileInput.addEventListener('change', () => {
-    const file = fileInput.files[0];
-    if (!file || !file.type.startsWith('image/')) return;
-    const reader = new FileReader();
-    reader.onload = ev => {
-      const image = new Image();
-      image.onload = () => {
-        const MAX = 900;
-        let w = image.width, h = image.height;
-        if (w > h && w > MAX){ h = Math.round(h * MAX / w); w = MAX; }
-        else if (h >= w && h > MAX){ w = Math.round(w * MAX / h); h = MAX; }
-        const canvas = document.createElement('canvas');
-        canvas.width = w; canvas.height = h;
-        canvas.getContext('2d').drawImage(image, 0, 0, w, h);
-        const dataUrl = canvas.toDataURL('image/jpeg', .88);
-        applyProjectPhoto(id, dataUrl);
-        try { localStorage.setItem(photoStorageKey(id), dataUrl); }
-        catch(err){ alert('Photo applied, but it was too large to save permanently. Try a smaller image.'); }
-      };
-      image.src = ev.target.result;
-    };
-    reader.readAsDataURL(file);
-    fileInput.value = '';
-  });
-});
-
-/* Let images open their matching image picker directly */
-document.querySelectorAll('[data-change-photo]').forEach(button => {
-  button.addEventListener('click', () => {
-    const fileInput = document.getElementById('file-' + button.dataset.changePhoto);
-    if (fileInput) fileInput.click();
-  });
-});
-
-/* Reset individual project photo */
-document.querySelectorAll('.pp-btn.restore').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const id = btn.dataset.reset;
-    try { localStorage.removeItem(photoStorageKey(id)); } catch(e){}
-    applyProjectPhoto(id, DEFAULTS[id]);
-  });
-});
-
-/* Reset ALL project photos */
- $('#resetAllBtn').addEventListener('click', () => {
-  PHOTO_IDS.forEach(id => {
-    try { localStorage.removeItem(photoStorageKey(id)); } catch(e){}
-    applyProjectPhoto(id, DEFAULTS[id]);
-  });
-});
 
 /* Contact modal */
 const contactButton = $('#contactButton');
